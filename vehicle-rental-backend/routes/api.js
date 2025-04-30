@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/bookingController');
+const vehicleController = require('../controllers/vehicleController');
+const bookingController = require('../controllers/bookingController');
 
-router.get('/types', controller.getVehicleTypes);
-router.get('/vehicles', controller.getVehiclesByType);
-router.post('/bookings', controller.createBooking);
+router.get('/vehicles', vehicleController.getAllVehicles);
+router.get('/vehicles/:type', vehicleController.getVehiclesByType);
+router.post('/vehicles', vehicleController.createVehicle);
+
+router.get('/bookings', bookingController.getAllBookings);
+router.post('/bookings', bookingController.createBooking);
 
 module.exports = router;
