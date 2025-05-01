@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); 
+const db = require('../db');
 
 router.get('/vehicle-models', async (req, res) => {
   const { type } = req.query;
@@ -9,18 +9,15 @@ router.get('/vehicle-models', async (req, res) => {
     return res.status(400).json({ error: 'Vehicle type is required' });
   }
 
-  console.log('Received vehicle type:', type);
-
   try {
     const [rows] = await db.query(
       'SELECT id, model AS name FROM vehicles WHERE type = ?',
       [type]
     );
-    console.log('Fetched models:', rows);
     res.json(rows);
-  } catch (error) {
-    console.error('Error fetching vehicle models:', error);
-    res.status(500).json({ error: 'Internal server error' });
+  } catch (err) {
+    console.error('Error fetching vehicle models:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

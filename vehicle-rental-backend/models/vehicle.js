@@ -1,4 +1,5 @@
 'use strict';
+router.get('/vehicle-models', vehicleController.getVehicleModelsByType);
 module.exports = (sequelize, DataTypes) => {
   const Vehicle = sequelize.define('Vehicle', {
     type: {

@@ -1,65 +1,43 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import { Button, FormControl, FormLabel, FormHelperText } from '@mui/material';
-import "react-datepicker/dist/react-datepicker.css";
+import React from 'react';
 
-const Step5_DateRange = ({ onNext, data, setData }) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [error, setError] = useState(false);
-
-  const handleNext = () => {
-    if (!startDate || !endDate) {
-      setError(true);
-      return;
-    }
-    setError(false);
-    setData({ ...data, startDate, endDate });
-    onNext();
-  };
-
+const Step5 = ({ prevStep, formData, handleChange }) => {
   return (
-    <div className="space-y-4">
-      <FormControl component="fieldset" error={error}>
-        <FormLabel component="legend" className="text-xl font-semibold text-gray-700">
-          Select booking date range
-        </FormLabel>
-
-        <div className="flex gap-4">
-          <div>
-            <FormLabel className="text-gray-700">Start Date</FormLabel>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              minDate={new Date()}
-              className="border p-2 rounded"
-            />
-          </div>
-          <div>
-            <FormLabel className="text-gray-700">End Date</FormLabel>
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate || new Date()}
-              className="border p-2 rounded"
-            />
-          </div>
-        </div>
-
-        {error && <FormHelperText>Please select both start and end date</FormHelperText>}
-      </FormControl>
-
-      <Button variant="contained" onClick={handleNext}>
-        Next
-      </Button>
+    <div>
+      <h2 className="text-xl font-semibold mb-4">Select rental dates</h2>
+      <div className="space-y-2 mb-4">
+        <label>
+          Start Date:
+          <input
+            type="date"
+            value={formData.startDate || ''}
+            onChange={(e) => handleChange('startDate', e.target.value)}
+            className="ml-2 border rounded p-1"
+          />
+        </label>
+        <br />
+        <label>
+          End Date:
+          <input
+            type="date"
+            value={formData.endDate || ''}
+            onChange={(e) => handleChange('endDate', e.target.value)}
+            className="ml-2 border rounded p-1"
+          />
+        </label>
+      </div>
+      <div className="flex justify-between">
+        <button onClick={prevStep} className="bg-gray-400 text-white px-4 py-2 rounded">
+          Previous
+        </button>
+        <button
+          onClick={() => alert('Form submitted successfully!')}
+          className="bg-green-600 text-white px-4 py-2 rounded"
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Step5_DateRange;
+export default Step5;

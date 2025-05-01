@@ -5,19 +5,5 @@
     "database": "vehicle_rental_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": "MySql",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": "MySql",
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
   }
 }

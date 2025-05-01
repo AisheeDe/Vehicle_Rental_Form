@@ -1,6 +1,6 @@
 import React from 'react';
 import StepForm from './components/StepForm.jsx';
-import './App.css'; 
+import './index.css'; 
 
 function App() {
   return (
